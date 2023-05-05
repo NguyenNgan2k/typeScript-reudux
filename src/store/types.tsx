@@ -6,7 +6,7 @@ export const LOGIN_ERROR = "LOGIN_ERROR";
 interface LoginRequest {
     type: typeof LOGIN_REQUEST,
     payload: {
-        email: string,
+        name: string,
         password: string,
     }
 }

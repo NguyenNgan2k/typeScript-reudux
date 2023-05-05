@@ -3,18 +3,26 @@ import { Field, InjectedFormProps, formValueSelector, reduxForm } from 'redux-fo
 import { connect } from 'react-redux';
 import { LoginState } from './store/types';
 
+interface IFormLogin {
+    username: string;
+    password: string;
+}
+
 interface Props {
 
 }
 
-const Login: React.FC<InjectedFormProps<{}, Props> & Props> = (props: Props) => {
+const Login: React.FC<InjectedFormProps<IFormLogin, Props> & Props> = (props) => {
 
-    const submit = () => {
+    const { handleSubmit } = props;
 
+    const submit = (values: IFormLogin) => {
+        console.log(values)
     }
+
     return (
         <>
-            <form className="form-login" onSubmit={submit}>
+            <form className="form-login" onSubmit={handleSubmit(submit)}>
                 <h1 className="text-center">Đăng nhập</h1>
                 <Field
                     name="username"
@@ -48,26 +56,21 @@ const Login: React.FC<InjectedFormProps<{}, Props> & Props> = (props: Props) => 
     );
 }
 
-const Form = reduxForm<{}, Props>({
+const Form = reduxForm<IFormLogin, Props>({
     form: 'formLogin',
     enableReinitialize: true,
 })(Login);
 
-const selector = formValueSelector('formLogin');
+const makeMapStateToProps = () => {
 
-const mapStateToProps = (state: LoginState) => {
-    console.log(state)
-    const { username, password } = selector(state, 'username', 'password');
+    const mapStateToProps = (state: LoginState) => {
+        return {
 
-    return {
-        username,
-        password,
-
-        initialValues: {
-            username: '',
-            password: '',
-        },
+        };
     };
+    return mapStateToProps;
 };
 
-export default connect(mapStateToProps)(Form);
+
+
+export default connect(makeMapStateToProps)(Form);
