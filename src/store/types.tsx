@@ -1,4 +1,3 @@
-import { type } from "os";
 
 export const LOGIN_REQUEST = "LOGIN_REQUEST";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
@@ -27,7 +26,6 @@ interface LoginError {
 }
 
 export interface LoginState {
-    user: null,
     loading: boolean,
     error: string | null,
     token: string | null,

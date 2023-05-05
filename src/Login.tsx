@@ -8,7 +8,7 @@ interface Props {
 }
 
 const Login: React.FC<InjectedFormProps<{}, Props> & Props> = (props: Props) => {
-    console.log(props)
+
     const submit = () => {
 
     }

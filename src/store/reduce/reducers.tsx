@@ -2,7 +2,6 @@
 import { LOGIN_ERROR, LOGIN_REQUEST, LOGIN_SUCCESS, LoginActionType, LoginState } from "../types";
 
 const initialState: LoginState = {
-    user: null,
     loading: false,
     error: null,
     token: null,
